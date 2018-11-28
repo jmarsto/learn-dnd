@@ -1,7 +1,7 @@
 import React from 'react'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
 import initialData from '../state/initialData'
-import TaskList from './taskList'
+import Column from './column'
 
 class App extends React.Component {
   constructor(props) {
@@ -19,17 +19,9 @@ class App extends React.Component {
      <DragDropContext onDragEnd={this.onDragEnd}>
        <div className="list">
          <h1>List</h1>
-         <Droppable droppableId="unique">
-           {provided => (
-             <TaskList
-               tasks={this.state.tasks}
-               innerRef={provided.innerRef}
-               {...provided.droppableProps}
-             >
-              {provided.placeholder}
-             </TaskList>
-           )}
-         </Droppable>
+         <Column
+           tasks={this.state.tasks}
+         />
        </div>
      </DragDropContext>
    )

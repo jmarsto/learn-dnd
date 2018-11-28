@@ -3,12 +3,18 @@ import Task from './task';
 
 class TaskList extends React.Component {
   render() {
-    const tasks = this.props.tasks.map(task => {
+    const tasks = this.props.tasks.map((task, index) => {
       return(
-        <Task
+        <div
           key={task}
-          task={task}
-        />
+          {...this.props}
+          ref={this.props.innerRef}
+        >
+          <Task
+            index={index}
+            task={task}
+          />
+        </div>
       )
     })
     return (
