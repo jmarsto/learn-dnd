@@ -11,6 +11,23 @@ class App extends React.Component {
 
   onDragEnd = result => {
     console.log("end");
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const newTasks = Array.from(this.state.tasks)
+    newTasks.splice(source.index, 1);
+    newTasks.splice(destination.index, 0, draggableId)
+
+    this.setState({ tasks: newTasks})
   }
 
   render() {
